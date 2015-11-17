@@ -28,7 +28,7 @@ var Box = React.createClass({
 
 var Row = React.createClass({
   handleClick : function(item) {
-    return item.setState({value: (item.state.value == "X")? "O" : "X" });
+    return this.props.onClick(item);
   },
   render: function onRender () {
     var ligns = this.props.ligns;
@@ -36,7 +36,7 @@ var Row = React.createClass({
       <div>
       {
           ligns.map(function(lign, index) {
-            return <Box initialValue={lign} index={index} onClick={this.handleClick} />
+            return <Box initialValue={lign} onClick={this.handleClick} />
           }.bind(this))
       }
       </div>
@@ -46,13 +46,16 @@ var Row = React.createClass({
 
 
 var Grid = React.createClass({
+  handleClick : function(item) {
+    return item.setState({value: (item.state.value == "X")? "O" : "X" });
+  },
   render: function onRender () {
     var cells = this.props.cells;
     return (
     <div>
     {
         cells.map(function(ligns, index) {
-          return <Row ligns={ligns} />
+          return <Row ligns={ligns} onClick={this.handleClick} />
         }.bind(this))
     }
     </div>
