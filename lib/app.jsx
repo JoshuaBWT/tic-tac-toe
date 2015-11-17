@@ -44,28 +44,17 @@ var Row = React.createClass({
   }
 });
 
+
 var Grid = React.createClass({
   render: function onRender () {
-    var cells = this.props.cells;
     return (
       <div>
-      {
-          cells.map(function(cells, index) {
-            return <Row ligns={cells[index]} index={index} />
-          }.bind(this))
-      }
+          <Row ligns={["-","-","-"]} />
+          <Row ligns={["-","-","-"]} />
+          <Row ligns={["-","-","-"]} />
       </div>
     );
   }
 });
 
-React.render(<Row ligns={
-["-","-","-"]
-}/>, document.body);
-/*
-React.render(<Grid cells={
-["-","-","-"],
-["-","-","-"],
-["-","-","-"]
-}/>, document.body);
-*/
+React.render(<Grid cells={["-","-","-"]}/>, document.body);
