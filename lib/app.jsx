@@ -15,11 +15,11 @@ var Box = React.createClass({
     //return setInterval(this.updateState, 300);
   },
   updateState : function() {
-    return this.setState({value: (this.state.value == "X")? "O" : "X" });
+    //return this.setState({value: (this.state.value == "X")? "O" : "X" });
   },
   handleClick : function() {
     //this.updateState();
-    this.props.handleClick(this.props.index)
+    return this.props.onClick(this);
   },
   render: function onRender () {
     return ( <button onClick={this.handleClick} style={boxStyle}>{this.state.value}</button> );
@@ -27,8 +27,8 @@ var Box = React.createClass({
 });
 
 var Row = React.createClass({
-  handleClick : function(index) {
-    childData.updateState();
+  handleClick : function(item) {
+    return item.setState({value: (item.state.value == "X")? "O" : "X" });
   },
   render: function onRender () {
     var ligns = this.props.ligns;
@@ -46,14 +46,26 @@ var Row = React.createClass({
 
 var Grid = React.createClass({
   render: function onRender () {
+    var cells = this.props.cells;
     return (
       <div>
-        <Row initialValue="-" />
-        <Row initialValue="-" />
-        <Row initialValue="-" />
+      {
+          cells.map(function(cells, index) {
+            return <Row ligns={cells[index]} index={index} />
+          }.bind(this))
+      }
       </div>
     );
   }
 });
 
-React.render(<Row ligns={["-","-","-"]}/>, document.body);
+React.render(<Row ligns={
+["-","-","-"]
+}/>, document.body);
+/*
+React.render(<Grid cells={
+["-","-","-"],
+["-","-","-"],
+["-","-","-"]
+}/>, document.body);
+*/
