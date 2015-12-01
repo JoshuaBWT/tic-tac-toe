@@ -29,7 +29,7 @@ var Box = React.createClass({
 
 var Row = React.createClass({
   handleClick : function(item) {
-    ... parce qu'ici j'arrive pas à retrouver la box juste avec son index
+     //parce qu'ici j'arrive pas à retrouver la box juste avec son index
     return this.props.onClick(item);
   },
   render: function onRender () {
